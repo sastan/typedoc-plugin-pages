@@ -29,7 +29,15 @@ export class ThemeManager {
 	 * @param options TypeDoc options
 	 */
 	public applyTheme(renderer: Renderer, options: Options): void {
-		const themePath = join(__dirname, "../..", "theme", compareVersions(this._typedocVersion, "0.17.4") >= 0 ? "v2" : "v1");
+		const themePath = join(
+			__dirname, "../..",
+			"theme",
+			compareVersions(this._typedocVersion, "0.20.0") >= 0
+			? 'v3'
+			: compareVersions(this._typedocVersion, "0.17.4") >= 0
+			? "v2"
+			: "v1"
+		);
 
 		// Get the TypeDoc "theme" option
 		const themeOption = options.getValue("theme");
